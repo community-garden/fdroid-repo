@@ -9,6 +9,10 @@
   {
     inherit nixpkgs;
 
+    legacyPackages.x86_64-linux = {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    };
+
     nixosConfigurations = {
       fdroid-repo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

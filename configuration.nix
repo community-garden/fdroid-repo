@@ -2,6 +2,7 @@
 {
   services.nginx = {
     enable = true;
+    enableReload = true;
     virtualHosts."fdroid2.pergola.gra.one" = {
       root = "/etc/nixos/fdroid/archive";
     };
