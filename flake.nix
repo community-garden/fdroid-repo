@@ -9,8 +9,10 @@
   {
     inherit nixpkgs;
 
-    legacyPackages.x86_64-linux = {
+    legacyPackages.x86_64-linux = rec {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+      fdroid-repo-update = import ./fdroid-repo-update.nix { inherit pkgs; };
     };
 
     nixosConfigurations = {
