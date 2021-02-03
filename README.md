@@ -7,13 +7,13 @@ When you want setup a new repository, simply set your preferences in `configurat
 You can also run it in docker:
 
 ```
-docker build . && docker run -ti -p 80:8888 $(docker build -q .)
+docker build . && docker run -ti -p 8888:80 $(docker build -q .)
 ```
 
 The configured virtual host should now be reachable:
 
 ```
-curl --resolve fdroid2.pergola.gra.one:8888:127.0.0.1 http://fdroid2.pergola.gra.one -I
+curl http://localhost:8888/fdroid/repo/index.xml
 ```
 
 Be aware, that the F-Droid client expects the server to serve via https.
