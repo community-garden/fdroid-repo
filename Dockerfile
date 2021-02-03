@@ -7,6 +7,10 @@ RUN mkdir -p /run/nginx /var/cache/nginx /var/log/nginx
 RUN nix run .#pkgs.nginx -- -c /etc/nginx/nginx.conf -t
 CMD nix run .#pkgs.nginx -- -c /etc/nginx/nginx.conf
 
-COPY fdroid /etc/nixos/fdroid
+## We copy the parent directory of the optionally existing ./fdroid/ repository.
+## This yields a docker container with a builtin copy of ./fdroid/
+COPY . /etc/nixos
 RUN nix run .#nixosConfigurations.fdroid-repo.config.services.fdroid-repo.package
-CMD nix run .#nixosConfigurations.fdroid-repo.config.services.fdroid-repo.package && nix run .#pkgs.nginx -- -c /etc/nginx/nginx.conf
+
+## On a production system you want ./fdroid/ to be a volume
+#CMD nix run .#nixosConfigurations.fdroid-repo.config.services.fdroid-repo.package && nix run .#pkgs.nginx -- -c /etc/nginx/nginx.conf

@@ -6,7 +6,7 @@
 
   services.fdroid-repo = {
     enable = true;
-    repo_url = "https://fdroid2.pergola.gra.one";
+    repo_url = "https://fdroid.pergola.gra.one";
     repo_name = "Pergola";
     repo_description = ''
       This F-Droid repository provides
@@ -18,7 +18,7 @@
   services.nginx = {
     enable = true;
     enableReload = true;
-    virtualHosts."fdroid2.pergola.gra.one" = {
+    virtualHosts."fdroid.pergola.gra.one" = {
       locations."/fdroid" = {
         root = "/etc/nixos";
       };

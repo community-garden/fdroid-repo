@@ -43,19 +43,15 @@ in
 
   ## This command is an idempotent version of https://f-droid.org/docs/Setup_an_F-Droid_App_Repo/#overview
 
-  if [ ! -d fdroid ] ; then
-    mkdir -p fdroid/repo
-    (cd fdroid && ${fdroid} init)
-  fi
-
+  [ ! -d fdroid ] && mkdir fdroid
   cd fdroid
-
+  [ ! -f config.py ] && ${fdroid} init
 
   echo 'Feel free to edit ./fdroid/config.py yourself.'
-  echo 'Be aware that fdroid-repo-update overwrites some constants.'
+  echo 'Be aware that fdroid-repo-update overwrites the variables defined in configuration.nix'
   ${update-config}/bin/update-config
 
-
+  [ ! -d repo ] &&  mkdir repo
   if ! ls repo/*.apk ; then
     echo 'Please put APK files into ./fdroid/repo/'
     exit
